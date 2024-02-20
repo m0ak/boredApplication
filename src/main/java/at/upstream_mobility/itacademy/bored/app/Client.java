@@ -6,8 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
-@RequiredArgsConstructor
-@Component
+@RequiredArgsConstructor    //identifies essential parts and connects (only) them automatically; only works on final and @NonNull fields
+@Component  //marks class as essential bean (component); automatically detects and manages it; allows Spring to provide other beans the class needs
 public class Client {
     private final WebClient boredWebClient;
 
