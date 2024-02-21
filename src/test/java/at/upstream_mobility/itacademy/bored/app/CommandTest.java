@@ -23,8 +23,7 @@ public class CommandTest {
     @Test
     void get_noFilters() {
         //given
-        Response response = new Response("Volunteer at your local food pantry", "charity", 1, 0.5, "", "1878070", 0.1);
-        when(client.request(null, null, null, null)).thenReturn(response);
+        when(client.request(null, null, null, null)).thenReturn(getResponse());
 
         //when
         String result = command.get(null, null, null, null);
@@ -46,8 +45,7 @@ public class CommandTest {
         Double price = 0.5;
         Double accessibility = 0.1;
 
-        Response response = new Response("Volunteer at your local food pantry", "charity", 1, 0.5, "", "1878070", 0.1);
-        when(client.request(type, participants, price, accessibility)).thenReturn(response);
+        when(client.request(type, participants, price, accessibility)).thenReturn(getResponse());
 
         //when
         String result = command.get(type, participants, price, accessibility);
@@ -58,5 +56,10 @@ public class CommandTest {
         Assertions.assertTrue(result.contains("1"));
         Assertions.assertTrue(result.contains("0.5"));
         Assertions.assertTrue(result.contains("0.1"));
+
+    }
+
+    private Response getResponse() {
+        return new Response("Volunteer at your local food pantry", "charity", 1, 0.5, "", "1878070", 0.1);
     }
 }
