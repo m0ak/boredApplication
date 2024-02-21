@@ -7,10 +7,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
-//defines bean (=components the application needs) configurations; uses @Bean methods; enables auto-configuration; allows customization
 public class WebClientConfig {
     @Bean
-    //identifies method within @Configuration class; defines bean details: bean type (service / repository bean), dependencies, lifecycle
     public WebClient boredWebClient(WebClient.Builder webClientBuilder) {
         return webClientBuilder
                 .baseUrl("https://www.boredapi.com")
