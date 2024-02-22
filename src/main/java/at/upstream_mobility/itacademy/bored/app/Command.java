@@ -15,7 +15,7 @@ public class Command {
                       @ShellOption(defaultValue = ShellOption.NULL) Integer participants,
                       @ShellOption(defaultValue = ShellOption.NULL) Double price,
                       @ShellOption(defaultValue = ShellOption.NULL) Double accessibility) {
-        Response activity = client.request(type, participants, price, accessibility);
+        BoredResponse activity = client.request(type, participants, price, accessibility);
         return activity.toString();
     }
 }

@@ -29,11 +29,7 @@ public class CommandTest {
         String result = command.get(null, null, null, null);
 
         //then
-        Assertions.assertTrue(result.contains("Volunteer at your local food pantry"));
-        Assertions.assertTrue(result.contains("charity"));
-        Assertions.assertTrue(result.contains("1"));
-        Assertions.assertTrue(result.contains("0.5"));
-        Assertions.assertTrue(result.contains("0.1"));
+        Assertions.assertEquals("activity='Volunteer at your local food pantry', type='charity', participants=1, price=0.5, link='', accessibility=0.1", result);
     }
 
     @DisplayName("get mock activity with all filters")
@@ -51,15 +47,10 @@ public class CommandTest {
         String result = command.get(type, participants, price, accessibility);
 
         //then
-        Assertions.assertTrue(result.contains("Volunteer at your local food pantry"));
-        Assertions.assertTrue(result.contains("charity"));
-        Assertions.assertTrue(result.contains("1"));
-        Assertions.assertTrue(result.contains("0.5"));
-        Assertions.assertTrue(result.contains("0.1"));
-
+        Assertions.assertEquals("activity='Volunteer at your local food pantry', type='charity', participants=1, price=0.5, link='', accessibility=0.1", result);
     }
 
-    private Response getResponse() {
-        return new Response("Volunteer at your local food pantry", "charity", 1, 0.5, "", "1878070", 0.1);
+    private BoredResponse getResponse() {
+        return new BoredResponse("Volunteer at your local food pantry", "charity", 1, 0.5, "", "1878070", 0.1);
     }
 }

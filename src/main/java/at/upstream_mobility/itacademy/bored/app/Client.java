@@ -6,13 +6,15 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.time.Duration;
+
 @RequiredArgsConstructor
 @Component
 public class Client {
     private final WebClient boredWebClient;
 
-    public Response request( String type, Integer participants, Double price, Double accessibility) {
-        Response response = boredWebClient.get()
+    public BoredResponse request(String type, Integer participants, Double price, Double accessibility) {
+        return boredWebClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/api/activity")
                         .queryParam("type", type)
                         .queryParam("participants", participants)
@@ -21,7 +23,7 @@ public class Client {
                         .build())
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .retrieve()
-                .bodyToMono(Response.class).block();
-        return response;
+                .bodyToMono(BoredResponse.class)
+                .block(Duration.ofSeconds(5));
     }
 }
